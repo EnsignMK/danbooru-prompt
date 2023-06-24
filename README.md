@@ -2,7 +2,7 @@
 Extension that gets tags for Danbooru images links in AUTOMATIC1111's Stable Diffusion webui
 
 # Credit:
-Alot of code I used for this project came from this project:
+A lot of code I used for this project came from this project:
 https://github.com/antis0007/sd-webui-gelbooru-prompt
 
 
