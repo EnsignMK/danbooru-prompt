@@ -1,3 +1,4 @@
+import contextlib
 
 import gradio as gr
 from modules import scripts
@@ -40,10 +41,24 @@ class BooruScript(scripts.Script):
             with gr.Accordion("DanBooru Link", open=False):
                 fetch_tags = gr.Button(value='Get Tags', variant='primary')
                 link= gr.Textbox(label="insert link")
-                tags = gr.Textbox(value="", label="Tags", lines=5)
 
-        fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[tags])
-        return [link, tags, fetch_tags]
+        with contextlib.suppress(AttributeError):
+            if is_img2img:
+                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[self.boxxIMG])
+            else:
+                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[self.boxx])
+
+
+
+        return [link, fetch_tags]
+
+    def after_component(self, component, **kwargs):
+        if kwargs.get("elem_id") == "txt2img_prompt":
+            self.boxx=component
+        if kwargs.get("elem_id") == "img2img_prompt":
+            self.boxxIMG=component
+
+
 
 
 script_callbacks.on_ui_settings(on_ui_settings)
