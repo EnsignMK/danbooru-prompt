@@ -9,15 +9,20 @@ from bs4 import BeautifulSoup
 
 def fetchTags(ch):
     if ch:
+        try:
+            if "danbooru.donmai.us/posts" not in ch:
+                return "unsupported url"
+            page = requests.get(ch)
 
-        page = requests.get(ch)
+            soup = BeautifulSoup(page.content, "html.parser")
 
-        soup = BeautifulSoup(page.content, "html.parser")
+            info = soup.findAll("a", class_="search-tag")
+            tags = [j.text for j in info]
 
-        info = soup.findAll("a", class_="search-tag")
-        tags = [j.text for j in info]
-
-        return  ' ,'.join(tags)
+            return ' ,'.join(tags)
+        except Exception as err:
+            # most likely an bad url
+            return "Incomplete url OR unsupported url"
     else:
         return []
 
