@@ -1,8 +1,6 @@
-import contextlib
-
 import gradio as gr
 from modules import scripts
-from modules import script_callbacks
+
 
 import requests
 from bs4 import BeautifulSoup
@@ -27,8 +25,7 @@ def fetchTags(ch):
         return []
 
 
-def on_ui_settings():
-    section = ('booru-link', "Gelbooru-link")
+
 
 
 class BooruScript(scripts.Script):
@@ -45,27 +42,12 @@ class BooruScript(scripts.Script):
         with gr.Group():
             with gr.Accordion("DanBooru Link", open=False):
                 fetch_tags = gr.Button(value='Get Tags', variant='primary')
-                link= gr.Textbox(label="insert link")
+                link = gr.Textbox(label="insert link")
+                text_box = gr.Textbox(label="tags", lines=5)
 
-        with contextlib.suppress(AttributeError):
             if is_img2img:
-                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[self.boxxIMG])
+                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[text_box])
             else:
-                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[self.boxx])
-
-
+                fetch_tags.click(fn=fetchTags, inputs=[link], outputs=[text_box])
 
         return [link, fetch_tags]
-
-    def after_component(self, component, **kwargs):
-        if kwargs.get("elem_id") == "txt2img_prompt":
-            self.boxx=component
-        if kwargs.get("elem_id") == "img2img_prompt":
-            self.boxxIMG=component
-
-
-
-
-#script_callbacks.on_ui_settings(on_ui_settings)
-
-# script_callbacks.on_ui_tabs(on_ui_tabs)
