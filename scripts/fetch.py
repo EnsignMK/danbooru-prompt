@@ -6,7 +6,6 @@ from modules import scripts
 import requests
 
 
-
 def fetchTags(ch, art_box, char_box):
     if ch:
         try:
@@ -24,13 +23,16 @@ def fetchTags(ch, art_box, char_box):
             format_tags = ""
 
             if art_box:
-                format_tags+=artist
+                format_tags += artist
             if char_box:
-                format_tags+=char
+                if not art_box:
+                    format_tags += char
+                else:
+                    format_tags += " " + char
 
-            format_tags += general_tags
+            format_tags += " " + general_tags
 
-            return format_tags.replace(" ", ",  ")
+            return format_tags.replace(" ", ", ")
 
 
 
