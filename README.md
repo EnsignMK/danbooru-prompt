@@ -4,6 +4,7 @@ Extension that gets tags for Danbooru images links in AUTOMATIC1111's Stable Dif
 # Credit:
 A lot of code I used for this project came from this project:
 https://github.com/antis0007/sd-webui-gelbooru-prompt
+@Malisius  repo's showed me a better way to scrape the tags.
 
 
 ## What is this?
