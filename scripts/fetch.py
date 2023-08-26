@@ -61,8 +61,8 @@ class BooruScript(scripts.Script):
                 link = gr.Textbox(label="insert link")
 
                 with gr.Row():
-                    includeartist = gr.Checkbox(value=True, label="Include artist tags in tag string", interactive=True)
-                    includecharacter = gr.Checkbox(value=True, label="Include character tags in tag string",
+                    includeartist = gr.Checkbox(value=True, label="Include artist tags", interactive=True)
+                    includecharacter = gr.Checkbox(value=True, label="Include character tags",
                                                    interactive=True)
 
         with contextlib.suppress(AttributeError):
