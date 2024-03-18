@@ -25,9 +25,9 @@ def fetchTags(ch, art_box, char_box):
 
             format_tags = ""
 
-            if art_box:
+            if art_box and artist:
                 format_tags += artist
-            if char_box:
+            if char_box and char:
                 if not art_box:
                     format_tags += char
                 else:
