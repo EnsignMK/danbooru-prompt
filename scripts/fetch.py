@@ -11,6 +11,9 @@ def fetchTags(ch, art_box, char_box):
         try:
             if "danbooru.donmai.us/posts" not in ch:
                 return "unsupported url"
+            if "?" in ch:
+                pos = ch.find("?")
+                ch = ch[:pos]
             url = ch + ".json"
 
             with requests.get(url, headers={
@@ -32,7 +35,14 @@ def fetchTags(ch, art_box, char_box):
 
             format_tags += " " + general_tags
 
-            return format_tags.replace(" ", ", ")
+            format_tags = format_tags.replace(" ", ", ")
+            format_tags = format_tags.replace("_", " ")
+            format_tags = format_tags.replace("(", "\(")
+            format_tags = format_tags.replace(")", "\)")
+            format_tags = format_tags.replace("[", "\[")
+            format_tags = format_tags.replace("]", "\]")
+            
+            return format_tags
 
 
 
