@@ -9,6 +9,8 @@ https://github.com/antis0007/sd-webui-gelbooru-prompt
 @Malisius  repo's showed me a better way to scrape the tags.
 https://github.com/Malisius/booru2prompt
 
+@z4m1  contributed on this repo
+
 
 ## What is this?
 This is a small extension I wrote to let you automatically pull the tags for any saved Danbooru image link in [AUTOMATIC1111's stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
